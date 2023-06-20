@@ -14,3 +14,4 @@ export const ToastIt = (text: string) =>{
 } 
 
 export const BASE_URL_CREATE = "http://localhost:3000/posts"
+export const BASE_URL_POSTS = "http://localhost:3000/posts?_expand=user"

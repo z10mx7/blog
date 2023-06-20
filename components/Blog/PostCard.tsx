@@ -1,7 +1,5 @@
 import React from "react";
-interface Props {
-  dateString: string;
-}
+import Link from "next/link";
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
@@ -13,18 +11,22 @@ const PostCard = (props) => {
   const getFullName = (author) => {
     return `${author.firstName} ${author.lastName}`;
   };
+  // TOOD:: move to helpers
   return (
     <div
       key={post.id}
       className="bg-white p-4 rounded-md border-gray-200 border-2"
     >
-      <img
-        // src="http://placeimg.com/640/480/sports"
-        src={post.image}
-        alt="Blog Post"
-        className="w-full h-40 object-cover rounded-md"
-      />
-      <h2 className="text-xl font-semibold mt-2">{post.title}</h2>
+      <Link href={"/post/" + post.id}>
+        <img
+          src={post.image}
+          alt="Blog Post"
+          className="w-full h-40 object-cover rounded-md"
+        />
+      </Link>
+      <Link href={"/post/" + post.id}>
+        <h2 className="text-xl font-semibold mt-2">{post.title}</h2>
+      </Link>
       <p className="text-[#9D9D9D] text-sm mt-2">{post.text}</p>
       <div className="flex flex-wrap mt-2">
         {post.tags.map((tag) => (
@@ -38,21 +40,19 @@ const PostCard = (props) => {
       </div>
       <div className="flex items-center mt-4">
         <img
-        //   src={post.user.avatar}
-            src="http://placeimg.com/480/480/sports"
-          // src={post.authorImage}
+          //   src={post.user.avatar}
+          src="http://placeimg.com/480/480/sports"
           alt="Author"
           className="w-8 h-8 rounded-full mr-2"
         />
         <div className="relative bottom-0">
           <p className="text-sm font-semibold">{getFullName(post.user)}</p>
-          <p className="text-xs text-gray-600">{formatDate(post.publishDate)}</p>
+          <p className="text-xs text-gray-600">
+            {formatDate(post.publishDate)}
+          </p>
         </div>
         <div className="ml-auto flex items-center">
           <span className="text-sm ml-1 text-gray-400">{post.likes}</span>
-          {/* <img src="/assets/icons/heart-regular.svg" /> */}
-
-          {/* <FontAwesomeIcon icon={faHeart}       className="text-gray-400 bg-white border border-gray-400 rounded-full p-2"  /> */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="ml-1"

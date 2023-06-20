@@ -1,53 +1,64 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faPlus,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
-
-interface Props {
-  dateString: string;
-}
+import axios from "axios";
+import { Post } from "@/utils/types";
+import { useRouter } from "next/router";
+import Error from "@/components/Home/Error";
+import React, { useEffect, useState } from "react";
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
   const options = { day: "2-digit", month: "short", year: "numeric" } as const;
   return date.toLocaleDateString("en-US", options);
 };
+const getFullName = (author) => {
+  return `${author.firstName} ${author.lastName}`;
+};
 
 const BlogPost = () => {
-  // const formattedDate = formatDate(dateString);
-  // Sample data for blog posts
-  const post = {
-    id: 1,
-    image: "image-url",
-    title: "Blog Post 1",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    tags: ["Tag", "Tag", "Tag"],
-    author: "John Doe",
-    authorImage: "author-image-url",
-    date: "June 1, 2023",
-    likes: 25,
-  };
+  const router = useRouter();
+  const id = router.query.id;
+  const [post, setPost] = useState<Post>();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    axios
+      .get<Post[]>("http://localhost:3000/posts/" + id + "?_expand=user")
+      .then((response) => {
+        setPost(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setError("Failed to fetch blog posts.");
+        setLoading(false);
+      });
+  }, []);
+  if (loading) {
+    return (
+      <div className="flex items-center h-screen">
+        <div className="mx-auto">
+          <img src="/assets/images/loader.gif" />
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <Error text={" Nothing to Show ! "} />;
+  }
   return (
-    <div className="max-w-7xl mx-auto w-7/12  h-screen mt-16 mb-32">
-      {/* <div className="grid gap-4 md:grid-cols-1"> */}
-      <div className=" ">
+    <div className="max-w-7xl mx-auto w-7/12    h-screen mt-16 mb-32">
+      <div>
         <div className="bg-white p-4 rounded-md border-gray-200 border-2">
           <img
-            src="http://placeimg.com/640/480/sports"
-            // src={post.image}
-            // height={200}
-            // width={500}
+            src={post?.image}
             alt="Blog Post"
             className="w-full h-64 object-cover rounded-md"
           />
-          <h2 className="text-xl font-semibold mt-2">{post.title}</h2>
-          <p className="text-[#9D9D9D] text-sm mt-2">{post.description}</p>
+          <h2 className="text-xl font-semibold mt-2">{post?.title}</h2>
+          <p className="text-[#9D9D9D] text-sm mt-2">{post?.text}</p>
           <div className="flex flex-wrap mt-2">
-            {post.tags.map((tag) => (
+            {post?.tags.map((tag) => (
               <span
                 key={tag}
                 className="px-4    bg-white text-[#9D9D9D]  border-gray-200 border-2 rounded-3xl  text-sm  "
@@ -64,14 +75,13 @@ const BlogPost = () => {
               className="w-8 h-8 rounded-full mr-2"
             />
             <div>
-              <p className="text-sm font-semibold">{post.author}</p>
-              <p className="text-xs text-gray-600">{post.date}</p>
+              <p className="text-sm font-semibold">{getFullName(post?.user)}</p>
+              <p className="text-xs text-gray-600">
+                {formatDate(post?.publishDate)}
+              </p>
             </div>
             <div className="ml-auto flex items-center">
-              <span className="text-sm ml-1 text-gray-400">{post.likes}</span>
-              {/* <img src="/assets/icons/heart-regular.svg" /> */}
-
-              {/* <FontAwesomeIcon icon={faHeart}       className="text-gray-400 bg-white border border-gray-400 rounded-full p-2"  /> */}
+              <span className="text-sm ml-1 text-gray-400">{post?.likes}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="ml-1"
