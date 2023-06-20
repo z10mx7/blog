@@ -13,54 +13,155 @@ This is a simple blog consisting of three main parts created with [Next.js](http
 First, clone the project:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/z10mx7/blog.git && cd blog
+
 ```
 
-First, run the development server:
+
+Then, install the packages:
+
+Notice: if you aren't in "blog" directory, go in there first using:  `cd blog`
+
+```bash
+npm i
+# or
+yarn
+# or
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
+
 ```
 
-First, run the development server:
+Finally, Open [http://localhost:3002](http://localhost:3002) with your browser to see the result.
 
+
+
+## Deploy in Server
+you can deploy this in diffrent ways, but lets talk about easiest way, PM2! . 
+
+ - First, put the files to you server using scp or ftp or just use git clone . 
+
+ - After that, install the pm2:
+
+ ```bash
+npm i -g pm2
+```
+ - Then , run the app using pm2 . 
+  ```bash
+pm2 start ecosystem.config.js
+```
+Notice : by default running port is set to 3002 , feel free to change it on any port you want . do that by modifying "ecosystem.config.js" 
+
+Finally , you can Open [http://YOUR_SERVER_IP:3002](http://YOUR_SERVER_IP:3002) with your browser to see the result.
+
+
+## Directory Structure
+  ```bash
+ .
+├── api
+│   ├── main.py
+├── components
+│   ├── Blog
+│   ├── Home
+│   ├── Shared
+│   └── ...
+├── pages
+│   ├── _app.tsx
+│   ├── _document.tsx
+│   ├── index.tsx
+│   ├── new.tsx
+│   └── post
+│      └── [id].tsx
+├── public
+│   ├── assets
+│   │   └── icons
+│   │   └── images
+│   └── ...
+├── styles
+│   ├── globals.css
+├── utils
+│   ├── helper.ts
+│   ├── types.ts
+├── .env.local
+├── next.config.js
+├── package.json
+├── ecosystem.config.js
+├── tailwind.config.js
+└── ...
+
+```
+
+
+- api : This directory contains a python webserver using "fastapi" and faker to generate fake data . its the python version of [me-majidi/blog-server](https://github.com/me-majidi/blog-server)  . if you got some errors using my api, just use the node version that he write.
+
+ - components: This directory contains reusable React components specific to your application. Components related to the blog, home page, shared components, and others can be organized into separate subdirectories.
+
+- pages: This directory contains all the pages of your Next.js application. The _app.tsx file is used to initialize the application, and _document.tsx is used to customize the HTML document. The index.tsx represents the home page, new.tsx represents the creation page, and the post directory contains the dynamic [id].tsx file for displaying individual blog posts based on their ID.
+
+- public: This directory is used to store publicly accessible static assets, such as icons and images. It can be further organized into subdirectories like assets to keep assets organized.
+
+- styles: This directory holds the global CSS file (globals.css) that applies styles globally to your application. Additional stylesheets or directories for component-specific styles can be added as needed.
+
+- utils: This directory contains utility files such as helper.ts for helper functions and types.ts for TypeScript type definitions.
+
+- .env.local: This file is used to store environment-specific configuration variables for local development.
+
+- next.config.js: This file is used to configure Next.js and customize its behavior.
+
+- package.json: This file lists the dependencies and scripts for your project.
+
+- ecosystem.config.js: This file is related to process management and can be used by tools like PM2 for deployment and server configuration.
+
+- tailwind.config.js: This file is used to customize the Tailwind CSS framework configuration.
+
+Open [http://localhost:3002](http://localhost:3002) with your browser to see the result.
+
+
+
+ 
+ 
+
+## Extra  - Backend Using Python/FastAPI
+
+
+
+First, you must have python 3.8+ and venv and pip installed already.
+
+Second, go inside api directory , then create and enable a venv : 
+```
+cd api && python3 -m venv venv
+
+source venv/bin/activate
+```
+
+Third , install the packages : 
+```
+pip install -r req.txt
+
+```
+
+Then, run the server : 
 ```bash
-npm run dev
+uvicorn main:app --port 3000
 # or
-yarn dev
-# or
-pnpm dev
+uvicorn main:app
+# or 
+uvicorn main:app --port 3000 --host 0.0.0.0
 ```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the swagger documentations. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+you can also use the same postman json collection . 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## TODO
+ - middleware and Auth for creating new posts . 
+ - loading during creating the post
+ - add layouts
