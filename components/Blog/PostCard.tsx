@@ -1,17 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import {getFullName, formatDate } from "@/utils/helper"
 
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  const options = { day: "2-digit", month: "short", year: "numeric" } as const;
-  return date.toLocaleDateString("en-US", options);
-};
+
 const PostCard = (props) => {
   const { post } = props;
-  const getFullName = (author) => {
-    return `${author.firstName} ${author.lastName}`;
-  };
-  // TODO:: move to helpers
+  
   return (
     <div
       key={post.id}

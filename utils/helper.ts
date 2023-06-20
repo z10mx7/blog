@@ -15,3 +15,12 @@ export const ToastIt = (text: string) =>{
 
 export const BASE_URL_CREATE = "http://localhost:3000/posts"
 export const BASE_URL_POSTS = "http://localhost:3000/posts?_expand=user"
+export const getFullName = (author) => {
+  return `${author.firstName} ${author.lastName}`;
+};
+
+export const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  const options = { day: "2-digit", month: "short", year: "numeric" } as const;
+  return date.toLocaleDateString("en-US", options);
+};

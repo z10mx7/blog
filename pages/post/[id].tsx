@@ -4,20 +4,15 @@ import { useRouter } from "next/router";
 import Error from "@/components/Home/Error";
 import React, { useEffect, useState } from "react";
 import Loading from "@/components/Shared/Loading";
+import {getFullName, formatDate } from "@/utils/helper"
 
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  const options = { day: "2-digit", month: "short", year: "numeric" } as const;
-  return date.toLocaleDateString("en-US", options);
-};
-const getFullName = (author) => {
-  return `${author.firstName} ${author.lastName}`;
-};
 
-const BlogPost = () => {
+ 
+
+const BlogPost = ({ id }) => {
   // TODO:: needs better dynamic routing 
-  const router = useRouter();
-  const id = router.query.id;
+  // const router = useRouter();
+  // const id = router.query.id;
   const [post, setPost] = useState<Post>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -94,5 +89,8 @@ const BlogPost = () => {
     </div>
   );
 };
-
+export async function getServerSideProps({ params }) {
+  const { id } = params;
+  return { props: { id } };
+}
 export default BlogPost;
