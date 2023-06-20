@@ -24,3 +24,5 @@ export const formatDate = (dateString: string): string => {
   const options = { day: "2-digit", month: "short", year: "numeric" } as const;
   return date.toLocaleDateString("en-US", options);
 };
+export const USER_AVATAR = "http://placeimg.com/480/480/sports";
+export const truncateText = (text, len) => {return text.slice(0, len);}

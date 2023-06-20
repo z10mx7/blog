@@ -1,18 +1,14 @@
 import axios from "axios";
+import Link from "next/link";
 import { Post } from "@/utils/types";
 import { useRouter } from "next/router";
 import Error from "@/components/Home/Error";
 import React, { useEffect, useState } from "react";
 import Loading from "@/components/Shared/Loading";
-import {getFullName, formatDate } from "@/utils/helper"
-
-
- 
-
+import { getFullName, formatDate, USER_AVATAR } from "@/utils/helper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 const BlogPost = ({ id }) => {
-  // TODO:: needs better dynamic routing 
-  // const router = useRouter();
-  // const id = router.query.id;
   const [post, setPost] = useState<Post>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,7 +56,7 @@ const BlogPost = ({ id }) => {
           </div>
           <div className="flex items-center mt-4">
             <img
-              src="http://placeimg.com/480/480/sports"
+              src={USER_AVATAR}
               // src={post.authorImage}
               alt="Author"
               className="w-8 h-8 rounded-full mr-2"
@@ -86,6 +82,15 @@ const BlogPost = ({ id }) => {
           </div>
         </div>
       </div>
+      <Link href="/">
+        <button className="px-4 py-2 mt-16 bg-[#4F73D0] flex items-center justify-center  text-white rounded-full active:bg-[#224DBA]">
+          Back To Home
+          <FontAwesomeIcon
+            icon={faHouse}
+            className=" rounded-full p-2   ml-2 text-[#4F73D0] text-sm bg-white "
+          />
+        </button>{" "}
+      </Link>
     </div>
   );
 };

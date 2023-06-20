@@ -1,15 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import {getFullName, formatDate } from "@/utils/helper"
-
+import { getFullName, formatDate, USER_AVATAR, truncateText } from "@/utils/helper";
 
 const PostCard = (props) => {
   const { post } = props;
-  
+
   return (
     <div
       key={post.id}
-      className="bg-white p-4 rounded-md border-gray-200 border-2"
+      className="bg-white p-4   rounded-md border-gray-200 border-2 relative"
+      style={{
+        height:"500px"
+      }}
     >
       <Link href={"/post/" + post.id}>
         <img
@@ -21,7 +23,7 @@ const PostCard = (props) => {
       <Link href={"/post/" + post.id}>
         <h2 className="text-xl font-semibold mt-2">{post.title}</h2>
       </Link>
-      <p className="text-[#9D9D9D] text-sm mt-2">{post.text}</p>
+      <p className="text-[#9D9D9D] text-sm mt-2">{truncateText(post.text, 150)}</p>
       <div className="flex flex-wrap mt-2">
         {post.tags.map((tag) => (
           <span
@@ -32,24 +34,23 @@ const PostCard = (props) => {
           </span>
         ))}
       </div>
-      <div className="flex items-center mt-4">
+      <div className=" flex items-center mt-4 justify-between absolute bottom-0 left-0 right-0"  >
         <img
-          //   src={post.user.avatar}
-          src="http://placeimg.com/480/480/sports"
+          src={USER_AVATAR}
           alt="Author"
-          className="w-8 h-8 rounded-full mr-2"
+          className="w-8 h-8 rounded-full mr-2 ml-2 mb-2"
         />
-        <div className="relative bottom-0">
-          <p className="text-sm font-semibold">{getFullName(post.user)}</p>
-          <p className="text-xs text-gray-600">
+        <div>
+          <p className="text-sm font-semibold -ml-16   ">{getFullName(post.user)}</p>
+          <p className="text-xs text-gray-600  -ml-16 mb-2">
             {formatDate(post.publishDate)}
           </p>
         </div>
-        <div className="ml-auto flex items-center">
-          <span className="text-sm ml-1 text-gray-400">{post.likes}</span>
+        <div className="flex items-center">
+        <span className="text-sm ml-1 text-gray-400 mr-2">{post.likes}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="ml-1"
+            className="ml-1 mr-2"
             fill="#9D9D9D"
             height="1em"
             viewBox="0 0 512 512"
