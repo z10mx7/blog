@@ -1,6 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+ 
+
+This is a simple blog consisting of three main parts created with [Next.js](https://nextjs.org/) +
+[Tailwindcss](https://tailwindcss.com) using Typescript : 
+ - A list of all posts with search functionality
+ - Ability to add a new post
+ - Post details page 
+
 
 ## Getting Started
+
+First, clone the project:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
 First, run the development server:
 

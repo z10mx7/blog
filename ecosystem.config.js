@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "ice",
+      name: "Blog",
       cwd: "./",
       script: "npm",
       args: "start ",
