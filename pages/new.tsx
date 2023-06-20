@@ -28,7 +28,7 @@ const FormComponent = () => {
         <input
           type="text"
           id="title"
-          className="w-full px-4 py-2 border border-[#E7E7E7] rounded-md focus:outline-none"
+          className="w-full px-4 py-2 border  focus:border-gray-500 border-[#E7E7E7] rounded-md focus:outline-none"
         />
       </div>
       <div className="px-4 mt-4">
@@ -37,7 +37,7 @@ const FormComponent = () => {
         </label>
         <textarea
           id="description"
-          className="w-full px-4 py-2 border border-[#E7E7E7] rounded-md focus:outline-none resize-none"
+          className="w-full px-4 py-2  focus:border-gray-500 border border-[#E7E7E7] rounded-md focus:outline-none resize-none"
           rows={4}
         ></textarea>
       </div>

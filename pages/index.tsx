@@ -31,13 +31,116 @@ const BlogPost = () => {
       date: "June 1, 2023",
       likes: 25,
     },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+    {
+      id: 1,
+      image: "image-url",
+      title: "Blog Post 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      tags: ["Tag", "Tag", "Tag"],
+      author: "John Doe",
+      authorImage: "author-image-url",
+      date: "June 1, 2023",
+      likes: 25,
+    },
+
+
+
+
     // Add more blog posts here...
   ];
 
   return (
-    <div className="max-w-3xl mx-auto mt-16">
+    <div className="max-w-7xl mx-auto mt-16 mb-32">
       <div className="flex items-center justify-between p-4">
-        <div className="relative flex items-center">
+        <div className="relative flex items-center  ">
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             className="absolute left-3 text-gray-400"
@@ -45,7 +148,7 @@ const BlogPost = () => {
           <input
             type="text"
             placeholder="Search"
-            className="pl-10 pr-4 py-2 border  border-[#E7E7E7]  rounded-3xl focus:outline-none"
+            className="pl-10 focus:placeholder-transparent pr-4 py-2 border hover:border-gray-400  border-[#E7E7E7]  rounded-3xl focus:outline-none"
           />
         </div>
 
@@ -57,7 +160,7 @@ const BlogPost = () => {
           />
         </button>
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-4">
         {blogPosts.map((post) => (
           <div
             key={post.id}
