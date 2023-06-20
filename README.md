@@ -1,5 +1,5 @@
 
- 
+ # Front + Back
 
 This is a simple blog consisting of three main parts created with [Next.js](https://nextjs.org/) +
 [Tailwindcss](https://tailwindcss.com) using Typescript : 
@@ -44,7 +44,7 @@ Finally, Open [http://localhost:3002](http://localhost:3002) with your browser t
 
 
 ## URL's
-
+Notice : you can visit this urls, even without running any backend server(node or python).
 
  - you can see all posts in [http://localhost:3002](http://localhost:3002)
 
