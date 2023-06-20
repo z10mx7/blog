@@ -132,7 +132,6 @@ Finally , you can Open [http://YOUR_SERVER_IP:3002](http://YOUR_SERVER_IP:3002) 
 
 - tailwind.config.js: This file is used to customize the Tailwind CSS framework configuration.
 
-Open [http://localhost:3002](http://localhost:3002) with your browser to see the result.
 
 
 
