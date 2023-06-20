@@ -6,11 +6,13 @@ import { BASE_URL_POSTS } from "@/utils/helper";
 import PostCard from "@/components/Blog/PostCard";
 import React, { useEffect, useState } from "react";
 import AddButton from "@/components/Home/AddButton";
+import Loading from "@/components/Shared/Loading";
 
 const BlogPost = () => {
   const [blogPosts, setBlogPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     axios
@@ -26,14 +28,17 @@ const BlogPost = () => {
       });
   }, []);
 
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  // Filter blogPosts based on searchQuery
+  const filteredBlogPosts = blogPosts.filter((post) =>
+    post.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   if (loading) {
-    return (
-      <div className="flex items-center h-screen">
-        <div className="mx-auto">
-          <img src="/assets/images/loader.gif" />
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
@@ -43,11 +48,11 @@ const BlogPost = () => {
   return (
     <div className="max-w-7xl mx-auto mt-16 mb-32">
       <div className="flex items-center justify-between p-4">
-        <Search />
+        <Search onSearch={handleSearch} />
         <AddButton />
       </div>
       <div className="grid gap-4 md:grid-cols-4">
-        {blogPosts.map((post) => (
+        {filteredBlogPosts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
       </div>

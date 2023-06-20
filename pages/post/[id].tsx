@@ -3,6 +3,7 @@ import { Post } from "@/utils/types";
 import { useRouter } from "next/router";
 import Error from "@/components/Home/Error";
 import React, { useEffect, useState } from "react";
+import Loading from "@/components/Shared/Loading";
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
@@ -14,6 +15,7 @@ const getFullName = (author) => {
 };
 
 const BlogPost = () => {
+  // TODO:: needs better dynamic routing 
   const router = useRouter();
   const id = router.query.id;
   const [post, setPost] = useState<Post>();
@@ -34,13 +36,7 @@ const BlogPost = () => {
       });
   }, []);
   if (loading) {
-    return (
-      <div className="flex items-center h-screen">
-        <div className="mx-auto">
-          <img src="/assets/images/loader.gif" />
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {

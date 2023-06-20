@@ -11,7 +11,7 @@ const PostCard = (props) => {
   const getFullName = (author) => {
     return `${author.firstName} ${author.lastName}`;
   };
-  // TOOD:: move to helpers
+  // TODO:: move to helpers
   return (
     <div
       key={post.id}
