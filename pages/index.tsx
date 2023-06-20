@@ -44,6 +44,7 @@ const BlogPost = () => {
  
   //   // Add more blog posts here...
   // ];
+    // TODO:: add loading. error
 
 
   useEffect(() => {
