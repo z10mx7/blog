@@ -43,6 +43,17 @@ Finally, Open [http://localhost:3002](http://localhost:3002) with your browser t
 
 
 
+## URL's
+
+
+ - you can see all posts in [http://localhost:3002](http://localhost:3002)
+
+- you can see each post by clicking on it . [http://localhost:3002/post/ID](http://localhost:3002/post/ID)
+
+- you can create a new post by goin to [http://localhost:3002/new](http://localhost:3002/new/)
+
+- you can also search the post from home page [http://localhost:3002](http://localhost:3002) by writing you words in search box and press the ENTER.
+
 ## Deploy in Server
 you can deploy this in diffrent ways, but lets talk about easiest way, PM2! . 
 
